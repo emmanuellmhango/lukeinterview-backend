@@ -28,7 +28,9 @@
 
 ## 📖 [HOSPITAL MANAGEMENT] <a name="about-project"></a>
 
-This is a backend app that manages the hospital facilities in Malawi. It is built in Ruby on Rails using postgres database. It is api only with the following endpoints:
+This is a backend app that manages the hospital facilities in Malawi. It is built in Ruby on Rails using postgres database. You can access the backend [HERE](https://github.com/emmanuellmhango/lukeinterview-frontend)
+
+It is api only with the following endpoints:
 
 - http://127.0.0.1:3000/users - This is the endpoint for creating users. It accepts the following parameters:
   - first_name
