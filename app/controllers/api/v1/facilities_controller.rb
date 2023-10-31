@@ -51,9 +51,9 @@ class Api::V1::FacilitiesController < ApplicationController
   # POST /api/v1/facilities
   def create
     @api_v1_facility = Facility.new(api_v1_facility_params)
-
+    new_facilities = Facility.all
     if @api_v1_facility.save
-      render json: { success: true }
+      render json: { success: true, facilities: new_facilities }
     else
       render json: { success: false, message: @api_v1_facility.errors }
     end
