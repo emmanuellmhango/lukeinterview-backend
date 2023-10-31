@@ -1,5 +1,5 @@
 class Api::V1::FacilitiesController < ApplicationController
-  before_action :set_api_v1_facility, only: %i[ show update destroy ]
+  before_action :set_api_v1_facility, only: [:show, :update, :destroy]
 
   # GET /api/v1/facilities
   def index
@@ -12,32 +12,35 @@ class Api::V1::FacilitiesController < ApplicationController
       end
     rescue StandardError => e
       render json: { success: false, message: e.message }
+    end
   end  
-  
+
   # GET /api/v1/facilities_search
   def facilities_search
     begin
-      @api_v1_facility = Facility.where(facility_name: params[:facility_name]).
+      @api_v1_facility = Facility.where(facility_name: params[:facility_name])
       if @api_v1_facility.present?
         render json: {success: true, facility: @api_v1_facility}
       else
-        render json: {success: false, message: "No facility found with the term '#{@api_v1_facility}'"}
+        render json: {success: false, message: "No facility found with the term '#{params[:facility_name]}'"}
       end
     rescue StandardError => e
       render json: { success: false, message: e.message }
+    end
   end
 
   # GET /api/v1/facilities_filter
-  def facilities_search
+  def facilities_filter
     begin
-      @api_v1_facility = Facility.where(facility_name: params[:facility_term]).
+      @api_v1_facility = Facility.where(facility_name: params[:facility_term])
       if @api_v1_facility.present?
         render json: {success: true, facility: @api_v1_facility}
       else
-        render json: {success: false, message: "No facility found with the term '#{@api_v1_facility}'"}
+        render json: {success: false, message: "No facility found with the term '#{params[:facility_term]}'"}
       end
     rescue StandardError => e
       render json: { success: false, message: e.message }
+    end
   end
 
   # GET /api/v1/facilities/1
