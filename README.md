@@ -75,7 +75,7 @@ This is a backend app that manages the hospital facilities in Malawi. It is buil
 
 ## 🚀 Live Demo & preview <a name="live-demo"></a>
 
-- _You can visit the live API [here](https://spaceship-missions.netlify.app/)_
+- _You can visit the live API [here](https://lukeapi.onrender.com/api/v1/)_
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
