@@ -53,9 +53,9 @@ class Api::V1::FacilitiesController < ApplicationController
     @api_v1_facility = Facility.new(api_v1_facility_params)
 
     if @api_v1_facility.save
-      render json: @api_v1_facility, status: :created, location: @api_v1_facility
+      render json: { success: true }
     else
-      render json: @api_v1_facility.errors, status: :unprocessable_entity
+      render json: { success: false, message: @api_v1_facility.errors }
     end
   end
 
