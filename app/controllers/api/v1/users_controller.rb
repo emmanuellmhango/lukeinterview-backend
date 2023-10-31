@@ -4,15 +4,16 @@ class Api::V1::UsersController < ApplicationController
   # GET /api/v1/users
   def index
     begin
-      @api_v1_user = User.find(params[:username, :password])
+      @api_v1_user = User.find_by(username: params[:username], password: params[:password])
       if @api_v1_user.present?
-        render json: {success: true, user: @api_v1_user}
+        render json: { success: true, user: @api_v1_user }
       else
-        render json: {success: false, message: "No user found"}
+        render json: { success: false, error: "User not found." }
       end
     rescue StandardError => e
-      render json: { success: false, message: e.message }
-  end
+      render json: { code: 201, error: e.message }, status: :unprocessable_entity
+    end
+  end  
 
   # GET /api/v1/users/1
   def show
@@ -24,9 +25,9 @@ class Api::V1::UsersController < ApplicationController
     @api_v1_user = User.new(api_v1_user_params)
 
     if @api_v1_user.save
-      render json: @api_v1_user, status: :created, location: @api_v1_user
+      render json: { success: true, message: 'User Created Successfully' }
     else
-      render json: @api_v1_user.errors, status: :unprocessable_entity
+      render json: {success: false, message: @api_v1_user.errors}
     end
   end
 
